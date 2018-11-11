@@ -1,0 +1,177 @@
+<DOCTYPE html>
+<html>
+<head>
+<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+	<title>Home - HackSugar</title>
+	<style>
+		.slidecontainer {
+    		width: 100%;
+		}
+		.slider {
+    		-webkit-appearance: none;
+    		width: 100%;
+    		height: 25px;
+    		background: #d3d3d3;
+    		outline: none;
+    		opacity: 0.7;
+    		-webkit-transition: .2s;
+    		transition: opacity .2s;
+    	}
+    	.slider:hover {
+    		opacity: 1;
+		}
+		.slider::-webkit-slider-thumb {
+    		-webkit-appearance: none;
+    		appearance: none;
+    		width: 25px;
+    		height: 25px;
+    		background: #0276EA;
+    		cursor: pointer;
+		}
+		.slider::-moz-range-thumb {
+    		width: 25px;
+    		height: 25px;
+    		background: #0276EA;
+    		cursor: pointer;
+		}
+		body {
+			background-color: #0276EA
+		}
+		h1 {
+			color: white;
+			font-family: sans-serif;
+		}
+		h2 {
+			color: white;
+			font-family: sans-serif;
+		}
+		h3 {
+			color: white;
+			font-family: sans-serif;
+		}
+		p {
+			color: white;
+
+
+			font-family: sans-serif;
+		}
+		li {
+			color: white;
+			font-family: sans-serif;
+		}
+		.element {
+			text-shadow:
+			-2px -2px 0 #000,
+			2px -2px 0 #000,
+			-2px 2px 0 #000,
+			2px 2px 0 #000;
+		}
+	</style>
+</head>
+<body>
+	<div id = "title">
+		<h1><em><strong>Home Security System</strong></em></h1>
+	</div>
+	<div id = "intro">
+		<h2>Welcome to the Home Security System!</h2>
+			<p>This webpage contains a search to be able to search through the live-streamed camera and the statistics, including the temperature and the motion.</p>
+	</div>
+	<div id = "list">
+		<h2>List of Parts</h2>
+			<p>This home security system includes:</p>
+			<ul>
+				<li>Raspberry Pi 3B</li>
+				<li>Raspberry Pi Camera v2</li>
+				<li>Adafruit PIR Motion Sensor</li>
+				<li>Temperature Humidity Sensor</li>
+			</ul>
+	</div>
+	<div id = "title">
+		<h1><em>Live Webcam and Stats: Home Security System</em></h1>
+	</div>
+	<div id = "live cam">
+		<h2>Live Webcam Stream</h2>
+			<p>This is the <em><strong>live</strong></em> stream from the webcam:</p>
+		<iframe width = "320" height = "240" src = "http://10.8.0.6:8082"></iframe>
+	</div>
+	<div class="slidecontainer">
+  			<p>This slider adjusts the angle of view for the webcam (left to right):</p>
+  		<input type="range" min="250" max="1250" value="750" class="slider" id="myRangeRound">
+	
+	
+  			<p>This slider adjusts the angle of view for the webcam (up and down):</p>
+  		<input type="range" min="250" max="1250" value="750" class="slider" id="myRangeHeight">
+	</div>
+	
+<br></br>
+	<div id = "stat intro">
+		<h2>Statistics</h2>
+			<p>The following show the stats that the system detects:</p>
+	</div>
+<br></br>
+	<div id = "stats">
+		<h3>Temperature</h3>
+		<p>(If the temperature goes above 90 degress Fahrenheit, the system sends a notification (through Firebase) to our phones.)</p>
+		<p id = "temperature">Current Temperature: </p>
+	<!--Insert the live temperature stats here-->
+<br></br>
+		<h3>Humidity</h3>
+		<p id = "humidity">Current Humidity: </p>
+<br></br>
+		<h3>Motion</h3>
+	</div>
+<br></br>
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+
+	<script>
+  		// Initialize Firebase
+  			var config = {
+    		apiKey: "AIzaSyAbF8hFRguIJ7Ng3XerSCK4QlcJGJTbEoc",
+    		authDomain: "hackathon2018sugar.firebaseapp.com",
+    		databaseURL: "https://hackathon2018sugar.firebaseio.com",
+    		projectId: "hackathon2018sugar",
+    		storageBucket: "hackathon2018sugar.appspot.com",
+    		messagingSenderId: "476918029965"
+  		};
+  			firebase.initializeApp(config);
+  			var database = firebase.database(), ref = firebase.database().ref();
+
+	</script>
+	<script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script>
+
+		var slider2 = document.getElementById("myRangeHeight");
+		var database = firebase.database();
+		slider2.oninput = function() {
+			console.log("Value " + this.value);
+			database.ref("/heightPos").set((parseFloat(this.value)/100).toString());
+		}
+
+	</script>
+	<script>
+		var slider = document.getElementById("myRangeRound");
+		var database = firebase.database();
+		slider.oninput = function() {
+			console.log("Value " + this.value);
+			database.ref("/roundPos").set((parseFloat(this.value)/100).toString());
+	}
+		
+	</script>
+	<script>
+		var temperature = firebase.database().ref('/temperature/current_inside');
+		temperature.on('value', function(snapshot){
+			document.getElementById("temperature").innerHTML = "Current Temperature: " + snapshot.val() + "°F";
+		})
+	</script>
+	<script>
+		var humidity = firebase.database().ref('/humidity/current_inside');
+		humidity.on('value', function(snapshot){
+			document.getElementById("humidity").innerHTML = "Current Humidity: " + snapshot.val() + "%";
+		})
+	</script>
+	 <meta http-equiv="refresh" content="5; URL=file:///C:/Users/Agranya/Documents/HackWebpageHome.html">
+</html>

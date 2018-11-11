@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "476918029965",
+    "firebase_url": "https://hackathon2018sugar.firebaseio.com",
+    "project_id": "hackathon2018sugar",
+    "storage_bucket": "hackathon2018sugar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476918029965:android:d348f2cdac7f26e5",
+        "android_client_info": {
+          "package_name": "com.tejasmehta.securityclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476918029965-cpeskak6vkaidcsml0i9us35lbi5ib3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tejasmehta.securityclient",
+            "certificate_hash": "6eb296d1a912654966fb9cbc30a662c04bd3d7d5"
+          }
+        },
+        {
+          "client_id": "476918029965-u2ao3im9jl9ihlunicst2k3ofl8p5nk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH2ztnhpEzr4sgr7M2_OOA-XxlrmnTnF0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476918029965-u2ao3im9jl9ihlunicst2k3ofl8p5nk4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "476918029965-h3du26v9asvkjoivqtnmopjc0i1klvnb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tejasmehta.securityclient"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
